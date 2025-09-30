@@ -1,22 +1,20 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/lEw1Qm1j)
-# Asignación: [Nombre de la asignación]
+# Asignación: Funciones de alto orden
 
-**Fecha:** [DD/MM/AAAA]
-**Curso:** [Nombre del Curso]
+**Fecha:** 30/09/2025
+**Curso:** Fundamentos de programacion Funcional y Concurrente
 
 ---
 
 ## 👥 Integrantes del Grupo
 
-| Nombre Completo | Código | Rol            | Correo Electrónico        |
-| --------------- | ------ | -------------- | ------------------------- |
-| [Estudiante 1]  | 123456 | [Líder/Colab.] | [correo1@institucion.edu] |
-| [Estudiante 2]  | 123457 | [Colaborador]  | [correo2@institucion.edu] |
-| [Estudiante 3]  | 123458 | [Colaborador]  | [correo3@institucion.edu] |
+| Nombre Completo            | Código  | Rol         | Correo Electrónico                         |
+|----------------------------|---------|-------------|--------------------------------------------|
+| Juan Jose Ospina Sanchez   | 2559711 | Colaborador | juan.jose.ospina@correounivalle.edu.co     |
+| Juan David Quintero Garcia | 2559710 | Colaborador | juan.quintero.garcia@correounivalle.edu.co |
 
 ---
 
 ## 📌 Descripción de la Asignación
 
-[Breve párrafo explicando el propósito y objetivos del taller (4-6 líneas). Ejemplo:]
-_"Este taller busca analizar [tema principal] mediante [metodología]. Los objetivos incluyen [objetivo 1], [objetivo 2] y [objetivo 3], aplicando conceptos vistos en clase como [concepto relevante]."_
+El taller busca trabajar con conjuntos “difusos” de una forma sencilla usando funciones en Scala. La idea es representarlos con un modelo básico, crear operaciones principales como el complemento, la unión y la intersección, y también compararlos para ver si uno está dentro de otro o si son iguales. Todo esto se hará aplicando lo visto en clase: uso de funciones, trabajar sin cambiar datos originales, usar recursión y manejar bien los tipos de datos.
