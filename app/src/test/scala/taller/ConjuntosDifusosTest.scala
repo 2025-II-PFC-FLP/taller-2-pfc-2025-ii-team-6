@@ -53,4 +53,56 @@ class ConjuntosDifusosTest extends AnyFunSuite {
     val x = 5
     assert(math.abs(u(x) - math.max(g1(x), g2(x))) < EPS)
   }
+
+  // ---- Tests para interseccion ----
+  test("interseccion: devuelve el mínimo entre dos conjuntos") {
+    val g1 = grande(1, 2)
+    val g2 = grande(2, 3)
+    val i = interseccion(g1, g2)
+    val x = 5
+    assert(math.abs(i(x) - math.min(g1(x), g2(x))) < EPS)
+  }
+
+  // ---- Tests para inclusion ----
+  test("inclusion: un conjunto está incluido en sí mismo") {
+    val g = grande(1, 2)
+    assert(inclusion(g, g))
+  }
+
+  test("inclusion: conjunto más débil incluido en más fuerte") {
+    val g1: ConjDifuso = (x: Int) => if (x < 5) 0.2 else 1.0
+    val g2: ConjDifuso = (x: Int) => if (x < 5) 0.8 else 1.0
+    assert(inclusion(g1, g2))
+    assert(!inclusion(g2, g1))
+  }
+
+  // ---- Tests para igualdad ----
+  test("igualdad: conjuntos idénticos son iguales") {
+    val g1 = grande(1, 2)
+    val g2 = grande(1, 2)
+    assert(igualdad(g1, g2))
+  }
+
+  test("igualdad: conjuntos distintos no son iguales") {
+    val g1 = grande(1, 2)
+    val g2 = grande(2, 3)
+    assert(!igualdad(g1, g2))
+  }
+
+  // ---- Tests para pertenece ----
+  test("pertenece: devuelve el mismo valor que la función") {
+    val g = grande(1, 2)
+    val x = 5
+    assert(math.abs(pertenece(x, g) - g(x)) < EPS)
+  }
+
+  test("pertenece: valores fuera del conjunto dan 0.0") {
+    val g = grande(1, 2)
+    assert(math.abs(pertenece(0, g) - 0.0) < EPS)
+  }
+
+  test("pertenece: valores muy grandes tienden a 1.0") {
+    val g = grande(1, 2)
+    assert(pertenece(1000, g) > 0.99)
+  }
 }
