@@ -32,4 +32,21 @@ class ConjuntosDifusos() {
   def union(cd1: ConjDifuso, cd2: ConjDifuso): ConjDifuso =
     (x: Int) => math.max(cd1(x), cd2(x))
 
+  def interseccion(cd1: ConjDifuso, cd2: ConjDifuso): ConjDifuso =
+    (x: Int) => math.min(cd1(x), cd2(x))
+
+  def inclusion(cd1: ConjDifuso, cd2: ConjDifuso): Boolean = {
+    val EPS = 1e-9
+    @tailrec
+    def aux(i: Int): Boolean = {
+      if (i > 1000) true
+      else if (cd1(i) <= cd2(i) + EPS) aux(i + 1)
+      else false
+    }
+    aux(0)
+  }
+
+  def igualdad(cd1: ConjDifuso, cd2: ConjDifuso): Boolean =
+    inclusion(cd1, cd2) && inclusion(cd2, cd1)
+
 }
