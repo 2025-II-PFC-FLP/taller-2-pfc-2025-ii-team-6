@@ -134,3 +134,74 @@ $$f_{g1 \cap g2}(1) = \min(0.1111, 0.0046) = 0.0046$$
 
 **Complemento de g1:**
 $$f_{\neg g1}(1) = 1 - 0.1111 = 0.8889$$
+
+## Diagrama del Proceso Recursivo
+
+### Inclusión
+
+```mermaid
+flowchart TD
+    A[Inicio: inclusion(cd1, cd2, i=0)] --> B{i > 1000?}
+    B -- Sí --> C[return true]
+    B -- No --> D{cd1(i) <= cd2(i) + EPS?}
+    D -- Sí --> E[aux(i+1)]
+    D -- No --> F[return false]
+```
+
+## Estado de la Pila de Llamados en `inclusion`
+
+A continuación se muestra el estado de la **pila de llamados** cuando se evalúa `inclusion(cd1, cd2)` para ( i = 0, 1, 2, 3 ) suponiendo que ninguna de las condiciones de corte se cumple hasta ( i = 3 ).
+
+```mermaid
+graph TB
+    subgraph Paso_0
+        A0[aux(0)]
+    end
+
+    subgraph Paso_1
+        A1[aux(1)] --> A0[retorna a aux(0)]
+    end
+
+    subgraph Paso_2
+        A2[aux(2)] --> A1[retorna a aux(1)]
+    end
+
+    subgraph Paso_3
+        A3[aux(3)] --> A2[retorna a aux(2)]
+    end
+```
+
+* **Paso 0:** Se llama `aux(0)`.
+* **Paso 1:** Como la condición no se cumple, se llama `aux(1)` que queda en el tope de la pila.
+* **Paso 2:** Se llama `aux(2)`, desplazando las llamadas previas hacia abajo.
+* **Paso 3:** Se llama `aux(3)` y así sucesivamente hasta que se alcanza la condición de corte.
+
+Este diagrama muestra cómo la pila crece a medida que se incrementa `i`. Cuando una condición devuelve `true` o `false`, las llamadas pendientes se resuelven en orden inverso (última en entrar, primera en salir — LIFO).
+
+## Análisis de Complejidad
+
+| Operación      | Complejidad Temporal |
+| -------------- | -------------------- |
+| `grande`       | O(1)                 |
+| `complemento`  | O(1)                 |
+| `union`        | O(1)                 |
+| `interseccion` | O(1)                 |
+| `inclusion`    | O(N) con N=1000      |
+| `igualdad`     | O(2N)                |
+
+* **Espacial:** Todas las funciones son **inmutables** y usan espacio O(1), salvo `inclusion` que consume espacio O(N) por la recursión.
+
+## Ventajas de la Representación Funcional
+
+1. **Inmutabilidad:** evita efectos secundarios.
+2. **Elegancia matemática:** los conjuntos se expresan como funciones.
+3. **Extensibilidad:** permite definir nuevos conjuntos difusos fácilmente.
+4. **Compatibilidad con operaciones funcionales:** composición, mapeo, etc.
+
+## Conclusiones
+
+El módulo implementado satisface los requisitos de la teoría de conjuntos difusos y aprovecha las características de Scala como funciones de orden superior, inmutabilidad y recursión de cola.
+
+Esta solución es eficiente, correcta y fácilmente extensible a otros dominios como control difuso y sistemas de inferencia.
+ConjuntosDifusosDocs.md
+6 KB
